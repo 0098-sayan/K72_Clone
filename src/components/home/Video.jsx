@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const Video = () => {
+const Video = ({ className = "" }) => {
   return (
-    <div>Video</div>
-  )
-}
+    <video
+      className={className}
+      autoPlay
+      muted
+      loop
+      playsInline
+      src="/video/front.mp4"
+    />
+  );
+};
 
-export default Video
+export default Video;
