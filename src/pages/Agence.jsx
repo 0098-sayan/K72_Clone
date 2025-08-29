@@ -7,16 +7,41 @@ const Agence = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const imageDivRef = useRef(null);
+  const imageRef = useRef(null);
+
+  const imageArray = [
+    "https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/Olivier_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/Lawrence_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/HugoJoseph_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/ChantalG_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/MyleneS_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/SophieA_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/Claire_480x640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/Michele_480X640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/MEL_480X640-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/CAMILLE_480X640_2-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/MAXIME_480X640_2-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/MEGGIE_480X640_2-480x640.jpg",
+    "https://k72.ca/uploads/teamMembers/joel_480X640_3-480x640.jpg",
+  ];
 
   useGSAP(function () {
     gsap.to(imageDivRef.current, {
       scrollTrigger: {
         trigger: imageDivRef.current,
-        markers: true,
-        start: "top 36%",
-        end: "-100%",
-        scrub: true,
+        start: "top 24.4%",
+        end: "top -148%",
         pin: true,
+        onUpdate: (elem) => {
+          let imageIndex;
+          if (elem.progress < 1) {
+            imageIndex = Math.floor(elem.progress * imageArray.length);
+          } else {
+            imageIndex = imageArray.length - 1;
+          }
+          imageRef.current.src = imageArray[imageIndex];
+        },
       },
     });
   });
@@ -29,6 +54,7 @@ const Agence = () => {
           className="absolute overflow-hidden h-[20vw] rounded-3xl w-[15vw] top-45 left-[30vw]"
         >
           <img
+            ref={imageRef}
             className="h-full object-cover w-full"
             src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg"
             alt=""
