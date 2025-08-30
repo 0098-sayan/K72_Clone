@@ -33,6 +33,12 @@ const Agence = () => {
         start: "top 24.4%",
         end: "top -148%",
         pin: true,
+        pinSpacing: true,
+        pinReparent: true,
+        pinType: "transform",
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
         onUpdate: (elem) => {
           let imageIndex;
           if (elem.progress < 1) {
